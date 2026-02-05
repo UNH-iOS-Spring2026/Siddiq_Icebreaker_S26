@@ -7,13 +7,16 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @State private var txtFirstName: String = ""
     @State private var txtLastName: String = ""
     @State private var txtPreferredName: String = ""
     @State private var txtAnswer: String = ""
+    @State var questions = [Question]()
     var body: some View {
 
+        
         VStack {
             Text("Ice breaker")
                 .bold()
@@ -24,16 +27,14 @@ struct ContentView: View {
             TextField("Last Name", text: $txtLastName)
             TextField("Prefered Name", text: $txtPreferredName)
             Button {
+                setRandomQuestion();
             } label: {
                 Text("Get a new random question")
             }
             Text("Question")
             TextField("Answer ", text: $txtAnswer)
             Button {
-                print("First Name: \(txtFirstName)")
-                print("First Name: \(txtLastName)")
-                print("First Name: \(txtPreferredName)")
-                print("First Name: \(txtAnswer)")
+                writeStudentToFirebase();
             } label: {
                 Text("Submit")
             }
@@ -42,5 +43,19 @@ struct ContentView: View {
         .font(.system(size: 28))
         .padding()
         .multilineTextAlignment(.center)
+        .onAppear(){ getQuestionsFromFirebase()   }
+    }
+    func setRandomQuestion() {
+        print("Test Set Question")
+    }
+    func getQuestionsFromFirebase() {
+        print("Test get question")
+    }
+    func writeStudentToFirebase() {
+        print("test write data")
     }
 }
+#Preview {
+    ContentView()
+}
+
